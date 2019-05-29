@@ -12,22 +12,22 @@
 		4.OP----运维
 		5.DB----数据库
 ## 1.单元测试
-1⃣️目的：单元测试能让开发者明确知道代码结果
-2⃣️原则：单一职责、接口抽象、层次分离
-3⃣️断言库：保证最小单元是否正常运行检测方法
-4⃣️测试风格：测试驱动开发和行为驱动开发均是敏捷开发方法论。
+### 1⃣️目的：单元测试能让开发者明确知道代码结果
+### 2⃣️原则：单一职责、接口抽象、层次分离
+### 3⃣️断言库：保证最小单元是否正常运行检测方法
+### 4⃣️测试风格：测试驱动开发和行为驱动开发均是敏捷开发方法论。
 **TDD(测试驱动开发)：关注所有的功能是否被实现（每一个功能必须有对应的测试用例），suite配合test利用assert（‘tobi’ == user,name）；**
 **BDD(行为驱动开发)：关注整体行为是否符合整体预期，编写的每一行代码都有目的的提供一个全面的测试用例集。 expact/should.describe配合it利用自然语言expect（1）. toEqual(fn())执行结果**
-5⃣️单元测试框架
+### 5⃣️单元测试框架
 **主要用的就是chai.js(双模)和Jasmine.js(单模)这两种框架，国内主要是BDD模式，所以用jesmine.js**
 ![](https://www.showdoc.cc/server/api/common/visitfile/sign/2db07202cc9c4740c89644aa0764968e?showdoc=.jpg)
-6⃣️单元测试运行流程(生命周期)
+### 6⃣️单元测试运行流程(生命周期)
 ##### 1.before 单个测试用例（it）开始前
 ##### 2.beforeEach 每一个测试用例开始前
 ##### 3.it 定义测试用例  并 利用断言库进行设置 chai 如：expect(x).to.equal(true)；异步mocha
 ##### 4.以上专业术语叫mock 
 **before---->beforeEach----> it ---->after---->afterEach
-7⃣️自动化单元测试
+### 7⃣️自动化单元测试
 ###### 1.karma  自动化runner集成PhantomJS无刷新
 ###### 2.npm install -g karma
 ###### 3.npm karma-cli --save-dev
@@ -35,7 +35,7 @@
 ###### 5.npm install   karma-phantomjs-launcher --save-dev
 ###### 6.npm install karma-mocha --save-dev
 ###### 7.npm install karma-chai --save-dev
-8⃣️开始写测试代码
+### 8⃣️开始写测试代码
 ###### 1.使用npm    cnpm（很坑）     yarn等装包工具  注意：mac要用sudo
 ###### 2.cd Desktop ---->   cd sch-qa
 ###### 3.npm init -y    直接确定本地一个包  会生成一个package.json文件
@@ -49,7 +49,7 @@
     })
 });`
 
-######5.yarn常用命令
+###### 5.yarn常用命令
 ![](https://www.showdoc.cc/server/api/common/visitfile/sign/d0d160fce744ece95dca44607f44ecd3?showdoc=.jpg)
 **yarn比npm的优势：yarn是离线缓存，如果是装过的包再装的话，基本秒装**
 ###### 6.--save-dev是开发阶段用的包        --save是上线时候用的包（重点！）
