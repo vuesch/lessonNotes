@@ -1,5 +1,7 @@
 # ❤️你不知道的HTML❤️
 
+[web前端面试之同源策略及解决方法](https://blog.csdn.net/animatecat/article/details/82744098)
+
 ## 1.img标签src属性
 
 ### 1⃣️同源策略
@@ -56,7 +58,7 @@ Set-Cookie:key=value;domain=.example.com;path=/
 
 img、ifram、script三个标签没有被同源策略限制，是因为其src属性没有被限制
 
-###3⃣️jsonp跨域原理及实现
+### 3⃣️jsonp跨域原理及实现（只支持GET）
 
 - 原理：利用标签的src属性访问一个跨域的地址，并传入一个前后端商量一致的回调函数名称，比如callback，然后将服务端的数据以该函数的参数传到前端。
 
@@ -154,9 +156,93 @@ img、ifram、script三个标签没有被同源策略限制，是因为其src属
 
 5.需要强调的文本，可以包含在strong或者em标签中（浏览器的预设样式，能用css指定就不用他们），strong默认样式时加粗（不要用p），em是斜体（不要用i）
 
-6.使用表格时，标题要用caption，表头要用thead，主体部分用tbody包裹
+6.使用表格时，标题要用caption，表头要用thead，主体部分用tbody包裹，尾部用tfoot包裹，表头和一般单元格要区分开，表头用th，单元格用td
 
+7.表单域要用fieldset标签包裹起来，并用legend标签说明表单的用途
 
+8.每个input标签对应的说明文本都需要使用lable标签，并且通过为input设置id属性，在lable标签中设置for=someId来让说明文本和相对应的input关联起来
+
+9.dl表格用法
+
+```html
+<dl>
+  <dt>列表标题</dt>
+  <dd>列表内容</dd>
+</dl>
+```
+
+10.ol  有序列表   ul   无序列表
+
+11.**h5语义化标签**，为了SEO
+
+```html
+<header>
+  <nav></nav>		导航
+</header>		头部
+
+<article></article>		文章 正文
+<section>
+	<h1></h1>
+  <p></p>
+</section>		块
+
+<aside></aside>		边栏
+<footer></footer>		底部
+<address></address>		地址
+```
+
+12.尽量少写html，多使用**伪元素**
+
+- 减少DOM渲染的时间
+- 浪费资源，代码冗余
+
+## 5.CORS跨域
+
+分为简单请求和非简单请求
+
+- 设置  Access-Control-Allow-Origin
+
+  + 设置为*表示，可以接收任意域名的访问
+
+    ```html
+    http.createServer((request, response) => {
+    
+        response.writeHead(200, {
+            'Access-Control-Allow-Origin': '*'
+        })
+    }).listen(port);
+    ```
+
+  + 也可以设置为特定域名访问
+
+    ```
+    http.createServer((request, response) => {
+    
+        response.writeHead(200, {
+            'Access-Control-Allow-Origin': 'http://127.0.0.1:3010/'
+        })
+    }).listen(port);
+    ```
+
+  + 如果有多个域名访问可以在服务端动态设置
+
+  + ```
+    http.createServer((request, response) => {
+        const origin = request.headers.origin;
+    
+        if ([
+            'http://127.0.0.1:3010'
+        ].indexOf(origin) !== -1) {
+            response.writeHead(200, {
+                'Access-Control-Allow-Origin': origin,
+            })
+        }
+    }).listen(port);
+    ```
+
+    
+
+贴一篇峰哥的文章，更好地了解同源，[浏览器同源政策及规避方法](http://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html)
 
 
 
